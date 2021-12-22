@@ -1,32 +1,32 @@
 version: '3'
 
 services:
-  node-app:
+  auer-node-app:
     build: .
-    image: node-app
+    image: auer-node-app
     environment:
-      - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
+      - MONGODB_URL=mongodb://auer-mongodb:27017/node-boilerplate
     ports:
-      - '3000:3000'
+      - '22111:3000'
     depends_on:
-      - mongodb
+      - auer-mongodb
     volumes:
       - .:/usr/src/node-app
     networks:
-      - node-network
+      - auer-node-network
 
-  mongodb:
+  auer-mongodb:
     image: mongo:4.2.1-bionic
     ports:
-      - '27017:27017'
+      - '22112:27017'
     volumes:
       - dbdata:/data/db
     networks:
-      - node-network
+      - auer-node-network
 
 volumes:
   dbdata:
 
 networks:
-  node-network:
+  auer-node-network:
     driver: bridge
